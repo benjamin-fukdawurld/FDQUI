@@ -15,10 +15,12 @@ MainWindow::MainWindow(QWidget *parent)
       m_vec(0.0f)
 {
     FDQUI::VectorModel *model = new FDQUI::VectorModel();
+    FDQUI::RowVectorProxyModel *proxy_model = new FDQUI::RowVectorProxyModel();
     model->setVector(m_vec);
+    proxy_model->setSourceModel(model);
     QTableView *lv = new QTableView();
 
-    lv->setModel(model);
+    lv->setModel(proxy_model);
     setCentralWidget(lv);
 
     /*

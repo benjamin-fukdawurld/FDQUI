@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <FDQUI/MatriceModel.h>
+#include <FDQUI/VectorModel.h>
 
 class MainWindow : public QMainWindow
 {
