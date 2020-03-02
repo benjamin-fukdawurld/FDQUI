@@ -28,10 +28,13 @@ MAKEFILE = ../build/makefiles/$${TARGET}
 OBJECTS_DIR = ../build/.obj/$${TARGET}
 
 LIBS += -Lbuild/lib
+LIBS += -lFDCore -lFD3D
 
-DEPENDPATH += include \
-    ../FD3D/include \
-    ../thirdparty/glm \
+PRE_TARGETDEPS +=
+    ../../build/lib/libFD3D.a
+
+DEPENDPATH += \
+    ../../build/lib/
 
 INCLUDEPATH += include \
     ../FD3D/include \
@@ -39,9 +42,15 @@ INCLUDEPATH += include \
 
 SOURCES += \
     src/MatriceModel.cpp \
+    src/VectorModel.cpp \
+    src/QuaternionModel.cpp \
+    src/TransformModel.cpp
 
 HEADERS += \
-    include/FDQUI/MatriceModel.h
+    include/FDQUI/MatriceModel.h \
+    include/FDQUI/VectorModel.h \
+    include/FDQUI/QuaternionModel.h \
+    include/FDQUI/TransformModel.h
 
 unix {
     target.path = /usr/lib
