@@ -1,8 +1,7 @@
-#ifndef VECTORMODEL_H
-#define VECTORMODEL_H
+#ifndef MATRICEMODEL_H
+#define MATRICEMODEL_H
 
 #include <QAbstractItemModel>
-#include <QLayout>
 
 #include <unordered_map>
 
@@ -27,6 +26,7 @@ namespace FDQUI
 
     class MatriceModel : public QAbstractItemModel
     {
+        Q_OBJECT
         public:
             typedef std::function<
                 QVariant(
@@ -114,69 +114,6 @@ namespace FDQUI
 
             void unsetValues() { setValues(nullptr, 0, 0); }
     };
-
-    class VectorModel: public MatriceModel
-    {
-        public:
-            using MatriceModel::MatriceModel;
-
-            ~VectorModel() override = default;
-
-            template<int S>
-            glm::vec<S, float, glm::defaultp> &getVector()
-            {
-                return *reinterpret_cast<glm::vec<S, float, glm::defaultp>*>(getValues());
-            }
-
-            template<int S>
-            const glm::vec<S, float, glm::defaultp> &getVector() const
-            {
-                return *reinterpret_cast<const glm::vec<S, float, glm::defaultp>*>(getValues());
-            }
-
-            template<int S>
-            void setVector(glm::vec<S, float, glm::defaultp> &v)
-            {
-                setValues(glm::value_ptr(v), S, 1);
-            }
-
-            void unsetVector() { setValues(nullptr, 0, 0); }
-
-        private:
-            using MatriceModel::getValues;
-            using MatriceModel::setValues;
-            using MatriceModel::unsetValues;
-    };
-
-    class QuaternionModel: public MatriceModel
-    {
-        public:
-            using MatriceModel::MatriceModel;
-
-            ~QuaternionModel() override = default;
-
-            glm::quat &getQuaternion()
-            {
-                return *reinterpret_cast<glm::quat*>(getValues());
-            }
-
-            const glm::quat &getQuaternion() const
-            {
-                return *reinterpret_cast<const glm::quat*>(getValues());
-            }
-
-            void setQuaternion(glm::quat &q)
-            {
-                setValues(glm::value_ptr(q), 4, 1);
-            }
-
-            void unsetQuaternion() { setValues(nullptr, 0, 0); }
-
-        private:
-            using MatriceModel::getValues;
-            using MatriceModel::setValues;
-            using MatriceModel::unsetValues;
-    };
 }
 
-#endif // VECTORMODEL_H
+#endif // MATRICEMODEL_H
