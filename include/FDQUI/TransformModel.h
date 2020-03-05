@@ -16,7 +16,7 @@ class TransformModel : public QAbstractItemModel
             mutable bool m_isUpToDate;
         */
 
-        enum class TransformFields: uint8_t
+        enum class TransformField: uint8_t
         {
             Position,
             Scale,

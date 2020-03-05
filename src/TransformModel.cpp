@@ -9,10 +9,50 @@ TransformModel::TransformModel(QObject *parent) :
 
 QModelIndex TransformModel::index(int row, int column, const QModelIndex &parent) const
 {
-    if(parent.isValid())
+    if(!m_transform)
+        return QModelIndex();
+
+    void *ptr = reinterpret_cast<void*>(m_transform);
+    if(!parent.isValid())
     {
-        return createIndex(row, column, reinterpret_cast<void*>(m_transform));
+        return createIndex(row, column, ptr);
     }
+
+    if(parent.internalPointer() == ptr)
+    {
+        switch(static_cast<TransformField>(parent.row()))
+        {
+            case TransformField::Position:
+                ptr = reinterpret_cast<void*>(&m_transform->getPosition());
+            break;
+
+            case TransformField::Scale:
+                ptr = reinterpret_cast<void*>(&m_transform->getScale());
+            break;
+
+            case TransformField::Rotation:
+                ptr = reinterpret_cast<void*>(&m_transform->getRotation());
+            break;
+
+            case TransformField::Matrice:
+                ptr = const_cast<void*>(reinterpret_cast<const void*>(&m_transform->getMatrix()));
+            break;
+
+            case TransformField::IsUpToDate:
+                // As We cannot get the address of the boolean we set it to the last byte of the Transform structure
+                ptr = (reinterpret_cast<char*>(m_transform) + sizeof(FD3D::Transform) - 1);
+            break;
+        }
+
+        return createIndex(row, column, ptr);
+    }
+
+    if(parent.internalPointer() < (reinterpret_cast<char*>(m_transform) + sizeof(FD3D::Transform)))
+    {
+
+    }
+
+    return QModelIndex();
 }
 
 int TransformModel::rowCount(const QModelIndex &parent) const
