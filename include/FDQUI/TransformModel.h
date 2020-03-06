@@ -25,6 +25,27 @@ class TransformModel : public QAbstractItemModel
             IsUpToDate
         };
 
+        enum class InternalId: int8_t
+        {
+            None,
+            Transform,
+            Position,
+            PositionX,
+            PositionY,
+            PositionZ,
+            Scale,
+            ScaleX,
+            ScaleY,
+            ScaleZ,
+            Rotation,
+            RotationX,
+            RotationY,
+            RotationZ,
+            RotationW,
+            Matrix,
+            IsUpToDate = Matrix + 16
+        };
+
         static constexpr size_t NumberOfFields = 5;
 
     protected:

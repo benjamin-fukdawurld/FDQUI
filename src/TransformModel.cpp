@@ -12,10 +12,27 @@ QModelIndex TransformModel::index(int row, int column, const QModelIndex &parent
     if(!m_transform)
         return QModelIndex();
 
-    void *ptr = reinterpret_cast<void*>(m_transform);
     if(!parent.isValid())
     {
-        return createIndex(row, column, ptr);
+        return createIndex(row, column, static_cast<quintptr>(InternalId::Transform));
+    }
+
+
+    switch(static_cast<InternalId>(parent.internalId()))
+    {
+        case InternalId::Transform:
+        switch(static_cast<TransformField>(row))
+        {
+            case TransformField::Position:
+            return createIndex(row, column, static_cast<quintptr>(InternalId::Position));
+
+            case TransformField::Scale:
+            return createIndex(row, column, static_cast<quintptr>(InternalId::Scale));
+
+            case TransformField::Rotation:
+            return createIndex(row, column, static_cast<quintptr>(InternalId::Scale));
+        }
+        break;
     }
 
     if(parent.internalPointer() == ptr)
