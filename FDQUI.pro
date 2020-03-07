@@ -42,12 +42,14 @@ INCLUDEPATH += include \
 
 SOURCES += \
     src/MatriceModel.cpp \
+    src/StrategyModel.cpp \
     src/VectorModel.cpp \
     src/QuaternionModel.cpp \
     src/TransformModel.cpp
 
 HEADERS += \
     include/FDQUI/MatriceModel.h \
+    include/FDQUI/StrategyModel.h \
     include/FDQUI/VectorModel.h \
     include/FDQUI/QuaternionModel.h \
     include/FDQUI/TransformModel.h
