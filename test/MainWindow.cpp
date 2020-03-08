@@ -8,19 +8,25 @@
 #include <QStringList>
 #include <QTableView>
 
-#include <QHeaderView>
+#include <QTreeView>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       m_vec(0.0f)
 {
-    FDQUI::VectorModel *model = new FDQUI::VectorModel();
-    FDQUI::RowVectorProxyModel *proxy_model = new FDQUI::RowVectorProxyModel();
-    model->setVector(m_vec);
-    proxy_model->setSourceModel(model);
-    QTableView *lv = new QTableView();
+    FDQUI::TransformModel *model = new FDQUI::TransformModel();
+    //FDQUI::VectorModel *model = new FDQUI::VectorModel();
+    //FDQUI::RowVectorProxyModel *proxy_model = new FDQUI::RowVectorProxyModel();
+    //model->setVector(m_vec);
+    //proxy_model->setSourceModel(model);
+    //QTableView *lv = new QTableView();
 
-    lv->setModel(proxy_model);
+    model->setTranfsorm(&m_transform);
+    QTreeView  *lv = new QTreeView();
+
+    lv->setModel(model);
+
+    //lv->setModel(proxy_model);
     setCentralWidget(lv);
 
     /*
