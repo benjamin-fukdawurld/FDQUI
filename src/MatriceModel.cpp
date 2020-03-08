@@ -142,10 +142,8 @@ QVariant FDQUI::defaultHeaderData(const FDQUI::MatriceModel &model,
 
     int mod = section % 26;
     int div = section / 26;
-    if(mod < 3)
-        result += static_cast<char>('x' + mod);
-    else if(mod == 3)
-        result = 'w';
+    if(mod < 4)
+        result += static_cast<char>('w' + mod);
     else
         result += static_cast<char>('a' + mod - 4);
 

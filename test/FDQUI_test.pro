@@ -28,23 +28,25 @@ DESTDIR = ../../build/bin
 MAKEFILE = ../../build/makefiles/$${TARGET}
 OBJECTS_DIR = ../../build/.obj/$${TARGET}
 
-LIBS += -L../../build/lib -lFDQUI
-#LIBS += -lglad -lFDGL -lFD3D -lFDCore
-#LIBS += -lglfw -lGL -lpthread -ldl -lX11 -lXrandr -lstdc++
-#LIBS += -L../../thirdparty/assimp/lib -lassimp
+LIBS += -L../../build/lib
+LIBS += -L../../thirdparty/assimp/lib
+LIBS +=  -lFDQUI -lFD3D -lFDCore -lassimp
 
-PRE_TARGETDEPS +=
-    ../../build/lib/libFDQUI.a
+#LIBS += -lglad -lFDGL -lFDCore
+#LIBS += -lglfw -lGL -lpthread -ldl -lX11 -lXrandr -lstdc++
+
+PRE_TARGETDEPS += \
+#    ../../build/lib/libFDQUI.a
+#    ../../build/lib/libFD3D.a
 
 DEPENDPATH += \
     ../../build/lib/
 
-
 INCLUDEPATH += \
     ../include \
-    ../../thirdparty/glm
-    #../../FDCore/include \
-    #../../FD3D/include \
+    ../../thirdparty/glm \
+    ../../FD3D/include \
+    ../../FDCore/include \
     #../../thirdparty/glad/include \
     #../../thirdparty/stb/include \
 
@@ -59,43 +61,3 @@ HEADERS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-#TARGET = FDQUI_test
-
-#TEMPLATE = app
-#CONFIG += c++17
-
-#DESTDIR = ../../build/bin
-#MAKEFILE = ../../build/makefiles/$${TARGET}
-#OBJECTS_DIR = ../../build/.obj/$${TARGET}
-
-##LIBS += -L../../build/lib -lglad -lFDGL -lFD3D -lFDCore
-##LIBS += -lglfw -lGL -lpthread -ldl -lX11 -lXrandr -lstdc++
-##LIBS += -L../../thirdparty/assimp/lib -lassimp
-
-
-#DEPENDPATH += \
-#    #../include \
-#    #../../FDCore/include \
-#    #../../FD3D/include \
-#    #../../thirdparty/glad/include \
-#    #../../thirdparty/stb/include \
-#    #../../thirdparty/glm \
-#    #../../thirdparty/assimp/include \
-
-
-#INCLUDEPATH += \
-#    #../include \
-#    #../../FDCore/include \
-#    #../../FD3D/include \
-#    #../../thirdparty/glad/include \
-#    #../../thirdparty/stb/include \
-#    #../../thirdparty/glm \
-#    #../../thirdparty/assimp/include \
-
-#SOURCES += \
-    
-#HEADERS += \
-    
-#OTHER_FILES += \
-
