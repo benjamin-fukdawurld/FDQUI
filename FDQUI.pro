@@ -10,7 +10,7 @@ TARGET = FDQUI
 TEMPLATE = lib
 
 CONFIG += console c++17
-CONFIG += staticlib
+#CONFIG += staticlib
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -27,22 +27,25 @@ DESTDIR = ../build/lib
 MAKEFILE = ../build/makefiles/$${TARGET}
 OBJECTS_DIR = ../build/.obj/$${TARGET}
 
-LIBS += -Lbuild/lib
-LIBS += -lFDCore -lFD3D
+LIBS += -L../build/lib
+LIBS += -lFDCore -lFD3D -lFDCore
 
-PRE_TARGETDEPS +=
-    ../../build/lib/libFD3D.a
+PRE_TARGETDEPS += \
+#    ../../build/lib/libFD3D.a \
+#    ../../build/lib/libFDCore.a \
 
 DEPENDPATH += \
     ../../build/lib/
 
 INCLUDEPATH += include \
     ../FD3D/include \
+    ../FDCore/include \
     ../thirdparty/glm \
 
 SOURCES += \
     src/MatriceModel.cpp \
     src/StrategyModel.cpp \
+    src/TransformDelegate.cpp \
     src/VectorModel.cpp \
     src/QuaternionModel.cpp \
     src/TransformModel.cpp
@@ -50,6 +53,7 @@ SOURCES += \
 HEADERS += \
     include/FDQUI/MatriceModel.h \
     include/FDQUI/StrategyModel.h \
+    include/FDQUI/TransformDelegate.h \
     include/FDQUI/VectorModel.h \
     include/FDQUI/QuaternionModel.h \
     include/FDQUI/TransformModel.h
