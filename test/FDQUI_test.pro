@@ -29,7 +29,7 @@ MAKEFILE = ../../build/makefiles/$${TARGET}
 OBJECTS_DIR = ../../build/.obj/$${TARGET}
 
 LIBS += -L../../build/lib
-LIBS += -L../../thirdparty/assimp/lib
+LIBS += -L../../thirdparty/assimp/bin
 LIBS +=  -lFDQUI -lFD3D -lFDCore -lassimp
 
 #LIBS += -lglad -lFDGL -lFDCore

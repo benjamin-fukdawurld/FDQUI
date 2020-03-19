@@ -14,7 +14,7 @@ namespace FDQUI
         public:
             TransformDelegate(QObject *parent = nullptr);
 
-            QWidget *createEditor(QWidget *parent,
+            /*QWidget *createEditor(QWidget *parent,
                                   const QStyleOptionViewItem &option,
                                   const QModelIndex &index) const override;
 
@@ -25,7 +25,7 @@ namespace FDQUI
 
             void updateEditorGeometry(QWidget *editor,
                                       const QStyleOptionViewItem &option,
-                                      const QModelIndex &index) const override;
+                                      const QModelIndex &index) const override;*/
     };
 }
 
