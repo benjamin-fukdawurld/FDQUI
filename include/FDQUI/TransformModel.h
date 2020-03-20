@@ -9,7 +9,7 @@ namespace FDQUI
     class TransformModel : public QAbstractItemModel
     {
         Q_OBJECT
-        protected:
+        public:
             enum class TransformField: uint8_t
             {
                 Position,

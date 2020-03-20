@@ -48,7 +48,8 @@ SOURCES += \
     src/TransformDelegate.cpp \
     src/VectorModel.cpp \
     src/QuaternionModel.cpp \
-    src/TransformModel.cpp
+    src/TransformModel.cpp \
+    src/VertexModel.cpp
 
 HEADERS += \
     include/FDQUI/MatriceModel.h \
@@ -56,7 +57,8 @@ HEADERS += \
     include/FDQUI/TransformDelegate.h \
     include/FDQUI/VectorModel.h \
     include/FDQUI/QuaternionModel.h \
-    include/FDQUI/TransformModel.h
+    include/FDQUI/TransformModel.h \
+    include/FDQUI/VertexModel.h
 
 unix {
     target.path = /usr/lib

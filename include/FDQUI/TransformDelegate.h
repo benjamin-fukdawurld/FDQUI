@@ -3,8 +3,6 @@
 
 #include <QStyledItemDelegate>
 
-#include <FDQUI/TransformModel.h>
-
 namespace FDQUI
 {
     class TransformDelegate : public QStyledItemDelegate

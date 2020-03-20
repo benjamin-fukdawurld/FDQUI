@@ -10,11 +10,15 @@
 
 #include <QTreeView>
 
+#include <FDQUI/TransformDelegate.h>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       m_vec(0.0f)
 {
     FDQUI::TransformModel *model = new FDQUI::TransformModel();
+    FDQUI::TransformDelegate *delegate = new FDQUI::TransformDelegate();
+
     //FDQUI::VectorModel *model = new FDQUI::VectorModel();
     //FDQUI::RowVectorProxyModel *proxy_model = new FDQUI::RowVectorProxyModel();
     //model->setVector(m_vec);
@@ -23,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     model->setTranfsorm(&m_transform);
     QTreeView  *lv = new QTreeView();
+    lv->setItemDelegate(delegate);
 
     lv->setModel(model);
 
