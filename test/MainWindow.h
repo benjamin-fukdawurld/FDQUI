@@ -4,20 +4,29 @@
 #include <QMainWindow>
 
 #include <FD3D/Utils/Transform.h>
+#include <FD3D/Light/Light.h>
 
-#include <FDQUI/VectorModel.h>
-#include <FDQUI/TransformModel.h>
+#include <FDQUI/Model/VectorModel.h>
+#include <FDQUI/Model/TransformModel.h>
+
+#include <FDQUI/GUI/Widget/OpenGLWidget.h>
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
     protected:
-        glm::vec4 m_vec;
         FD3D::Transform m_transform;
+
+        FDQUI::OpenGLWidget *m_glWindow;
 
     public:
         MainWindow(QWidget *parent = nullptr);
         ~MainWindow();
+
+    private:
+        void prepareGLWidget();
+
+        void prepareLeftDock();
 };
 
 #endif // MAINWINDOW_H

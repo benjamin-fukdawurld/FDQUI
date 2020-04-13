@@ -1,4 +1,4 @@
-#include "include/FDQUI/StrategyModel.h"
+#include <FDQUI/Model/StrategyModel.h>
 
 FDQUI::StrategyModel::StrategyModel(QObject *parent) : QAbstractItemModel(parent)
 {}

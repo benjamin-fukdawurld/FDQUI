@@ -1,4 +1,4 @@
-#include <FDQUI/VectorModel.h>
+#include <FDQUI/Model/VectorModel.h>
 
 using namespace FDQUI;
 

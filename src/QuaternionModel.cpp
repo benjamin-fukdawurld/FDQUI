@@ -1,4 +1,4 @@
-#include <FDQUI/QuaternionModel.h>
+#include <FDQUI/Model/QuaternionModel.h>
 
 using namespace FDQUI;
 

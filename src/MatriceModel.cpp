@@ -1,4 +1,4 @@
-#include <FDQUI/MatriceModel.h>
+#include <FDQUI/Model/MatriceModel.h>
 
 #include <string>
 
@@ -8,7 +8,7 @@ FDQUI::MatriceModel::MatriceModel(
         HeaderDataStrategy headerDatastrategy,
         const DataStrategyMap &dataStrategies,
         QObject *parent
-    ) :
+        ) :
     QAbstractItemModel(parent),
     m_headerDataStrategy(headerDatastrategy),
     m_dataStrategies(dataStrategies),
@@ -114,15 +114,17 @@ Qt::ItemFlags FDQUI::MatriceModel::flags(const QModelIndex &index) const
 
 void FDQUI::MatriceModel::setValues(float *data, size_t nbRow, size_t nbCol)
 {
+    emit beginResetModel();
     m_values = data;
     m_nbRow = nbRow;
     m_nbCol = nbCol;
+    emit endResetModel();
 }
 
-QVariant FDQUI::defaultHeaderData(const FDQUI::MatriceModel &model,
-                                  int section,
-                                  Qt::Orientation orientation,
-                                  int role)
+QVariant FDQUI::MatriceModel::defaultHeaderData(const FDQUI::MatriceModel &model,
+                                                int section,
+                                                Qt::Orientation orientation,
+                                                int role)
 {
     if(role != Qt::DisplayRole || section < 0)
         return QVariant();
@@ -140,6 +142,12 @@ QVariant FDQUI::defaultHeaderData(const FDQUI::MatriceModel &model,
 
     QString result;
 
+    if(model.rowCount() < 4)
+    {
+        result += static_cast<char>('x' + section);
+        return result;
+    }
+
     int mod = section % 26;
     int div = section / 26;
     if(mod < 4)
@@ -153,7 +161,7 @@ QVariant FDQUI::defaultHeaderData(const FDQUI::MatriceModel &model,
     return result;
 }
 
-QVariant FDQUI::defaultData(const FDQUI::MatriceModel &model, size_t row, size_t column)
+QVariant FDQUI::MatriceModel::defaultData(const FDQUI::MatriceModel &model, size_t row, size_t column)
 {
     return model.getValues()[row + column * static_cast<size_t>(model.rowCount())];
 }

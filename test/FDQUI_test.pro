@@ -30,7 +30,8 @@ OBJECTS_DIR = ../../build/.obj/$${TARGET}
 
 LIBS += -L../../build/lib
 LIBS += -L../../thirdparty/assimp/bin
-LIBS +=  -lFDQUI -lFD3D -lFDCore -lassimp
+LIBS +=  -lFDQUI -lFD3D -lFDCore -lassimp -lFDGL -lglad
+LIBS += -lglfw -lGL -lpthread -ldl -lX11 -lXrandr -lstdc++
 
 #LIBS += -lglad -lFDGL -lFDCore
 #LIBS += -lglfw -lGL -lpthread -ldl -lX11 -lXrandr -lstdc++
@@ -46,9 +47,10 @@ INCLUDEPATH += \
     ../include \
     ../../thirdparty/glm \
     ../../FD3D/include \
+    ../../FDGL/include \
     ../../FDCore/include \
-    #../../thirdparty/glad/include \
-    #../../thirdparty/stb/include \
+    ../../thirdparty/glad/include \
+    ../../thirdparty/assimp/include \
 
 SOURCES += \
     MainWindow.cpp \

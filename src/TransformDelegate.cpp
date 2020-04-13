@@ -1,6 +1,6 @@
-#include "include/FDQUI/TransformDelegate.h"
+#include <FDQUI/GUI/View/TransformDelegate.h>
 
-#include <FDQUI/TransformModel.h>
+#include <FDQUI/Model/TransformModel.h>
 
 #include <QDoubleSpinBox>
 #include <QFormLayout>
@@ -11,9 +11,7 @@
 
 FDQUI::TransformDelegate::TransformDelegate(QObject *parent) :
     QStyledItemDelegate(parent)
-{
-
-}
+{}
 
 QWidget *FDQUI::TransformDelegate::createEditor(QWidget *parent,
                                                 const QStyleOptionViewItem &option,
@@ -66,7 +64,9 @@ void FDQUI::TransformDelegate::setEditorData(QWidget *editor,
         QDoubleSpinBox *wid = static_cast<QDoubleSpinBox*>(editor);
         bool ok = false;
         double value = index.data(Qt::EditRole).toDouble(&ok);
-        wid->setValue(value);
+        if(ok)
+            wid->setValue(value);
+
         wid->setWhatsThis(index.data(Qt::WhatsThisRole).toString());
         wid->setToolTip(index.data(Qt::ToolTipRole).toString());
         wid->setStatusTip(index.data(Qt::StatusTipRole).toString());
@@ -105,11 +105,4 @@ void FDQUI::TransformDelegate::setModelData(QWidget *editor, QAbstractItemModel 
     }
 
     QStyledItemDelegate::setModelData(editor, model, index);
-}
-
-void FDQUI::TransformDelegate::updateEditorGeometry(QWidget *editor,
-                                                    const QStyleOptionViewItem &option,
-                                                    const QModelIndex &index) const
-{
-    QStyledItemDelegate::updateEditorGeometry(editor, option, index);
 }

@@ -13,17 +13,6 @@
 
 namespace FDQUI
 {
-    class MatriceModel;
-
-    QVariant defaultHeaderData(const MatriceModel &model,
-                               int section,
-                               Qt::Orientation orientation,
-                               int role);
-
-    QVariant defaultData(const MatriceModel &model,
-                         size_t row,
-                         size_t column);
-
     class MatriceModel : public QAbstractItemModel
     {
         Q_OBJECT
@@ -55,8 +44,8 @@ namespace FDQUI
 
         public:
             MatriceModel(
-                    HeaderDataStrategy headerDatastrategy = &defaultHeaderData,
-                    const DataStrategyMap &dataStrategies = {{ Qt::DisplayRole, &defaultData }},
+                    HeaderDataStrategy headerDatastrategy = &MatriceModel::defaultHeaderData,
+                    const DataStrategyMap &dataStrategies = {{ Qt::DisplayRole, &MatriceModel::defaultData }},
                     QObject *parent = nullptr
                 );
             ~MatriceModel() override = default;
@@ -113,6 +102,15 @@ namespace FDQUI
             }
 
             void unsetValues() { setValues(nullptr, 0, 0); }
+
+            static QVariant defaultHeaderData(const MatriceModel &model,
+                                              int section,
+                                              Qt::Orientation orientation,
+                                              int role);
+
+            static QVariant defaultData(const MatriceModel &model,
+                                        size_t row,
+                                        size_t column);
     };
 }
 

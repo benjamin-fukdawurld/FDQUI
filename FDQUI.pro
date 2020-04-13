@@ -10,7 +10,6 @@ TARGET = FDQUI
 TEMPLATE = lib
 
 CONFIG += console c++17
-#CONFIG += staticlib
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -28,19 +27,17 @@ MAKEFILE = ../build/makefiles/$${TARGET}
 OBJECTS_DIR = ../build/.obj/$${TARGET}
 
 LIBS += -L../build/lib
-LIBS += -lFDCore -lFD3D -lFDCore
-
-PRE_TARGETDEPS += \
-#    ../../build/lib/libFD3D.a \
-#    ../../build/lib/libFDCore.a \
-
-DEPENDPATH += \
-    ../../build/lib/
+LIBS += -lFDCore -lFD3D -lFDCore -lFDGL -lglad
+LIBS += -lglfw -lGL -lpthread -ldl -lX11 -lXrandr -lstdc++
 
 INCLUDEPATH += include \
     ../FD3D/include \
+    ../FDGL/include \
     ../FDCore/include \
+    ../thirdparty/ \
     ../thirdparty/glm \
+    ../thirdparty/glad/include \
+    ../thirdparty/assimp/include \
 
 SOURCES += \
     src/MatriceModel.cpp \
@@ -49,16 +46,35 @@ SOURCES += \
     src/VectorModel.cpp \
     src/QuaternionModel.cpp \
     src/TransformModel.cpp \
-    src/VertexModel.cpp
+    src/VertexModel.cpp \
+    src/OpenGLApplication.cpp \
+    src/LightModel.cpp \
+    src/OpenGLWidget.cpp \
+    src/VectorView.cpp \
+    src/ColorModel.cpp \
+    src/ColorWidget.cpp \
+    src/VectorWidget.cpp \
+    src/VectorDelegate.cpp
 
 HEADERS += \
-    include/FDQUI/MatriceModel.h \
-    include/FDQUI/StrategyModel.h \
-    include/FDQUI/TransformDelegate.h \
-    include/FDQUI/VectorModel.h \
-    include/FDQUI/QuaternionModel.h \
-    include/FDQUI/TransformModel.h \
-    include/FDQUI/VertexModel.h
+    include/FDQUI/Model/MatriceModel.h \
+    include/FDQUI/Model/StrategyModel.h \
+    include/FDQUI/Model/LightModel.h \
+    include/FDQUI/Model/VectorModel.h \
+    include/FDQUI/Model/QuaternionModel.h \
+    include/FDQUI/Model/TransformModel.h \
+    include/FDQUI/Model/VertexModel.h \
+\
+    include/FDQUI/GUI/OpenGLApplication.h \
+\
+    include/FDQUI/GUI/Widget/OpenGLWidget.h \
+\
+    include/FDQUI/GUI/View/TransformDelegate.h \
+    include/FDQUI/GUI/View/VectorView.h \
+    include/FDQUI/Model/ColorModel.h \
+    include/FDQUI/GUI/Widget/ColorWidget.h \
+    include/FDQUI/GUI/Widget/VectorWidget.h \
+    include/FDQUI/GUI/View/VectorDelegate.h
 
 unix {
     target.path = /usr/lib

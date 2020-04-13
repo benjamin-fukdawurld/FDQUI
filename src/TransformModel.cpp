@@ -1,4 +1,4 @@
-#include "include/FDQUI/TransformModel.h"
+#include <FDQUI/Model/TransformModel.h>
 
 FDQUI::TransformModel::TransformModel(QObject *parent) :
     QAbstractItemModel(parent),

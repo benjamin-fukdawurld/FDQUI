@@ -1,41 +1,53 @@
-#ifndef QUATERNIONMODEL_H
-#define QUATERNIONMODEL_H
+#ifndef VECTORMODEL_H
+#define VECTORMODEL_H
 
-#include <FDQUI/MatriceModel.h>
+#include <FDQUI/Model/MatriceModel.h>
 #include <QAbstractProxyModel>
 
 namespace FDQUI
 {
-    class QuaternionModel: public MatriceModel
+
+    class VectorModel: public MatriceModel
     {
         Q_OBJECT
         public:
             using MatriceModel::MatriceModel;
 
-            ~QuaternionModel() override = default;
+            ~VectorModel() override = default;
 
-            glm::quat &getQuaternion();
+            template<int S>
+            glm::vec<S, float, glm::defaultp> &getVector()
+            {
+                return *reinterpret_cast<glm::vec<S, float, glm::defaultp>*>(getValues());
+            }
 
-            const glm::quat &getQuaternion() const;
+            template<int S>
+            const glm::vec<S, float, glm::defaultp> &getVector() const
+            {
+                return *reinterpret_cast<const glm::vec<S, float, glm::defaultp>*>(getValues());
+            }
 
-            void setQuaternion(glm::quat &q);
+            template<int S>
+            void setVector(glm::vec<S, float, glm::defaultp> &v)
+            {
+                setValues(glm::value_ptr(v), S, 1);
+            }
 
-            void unsetQuaternion();
-
+            void unsetVector();
         private:
             using MatriceModel::setValues;
             using MatriceModel::unsetValues;
     };
 
-    class RowQuaternionProxyModel: public QAbstractProxyModel
+    class RowVectorProxyModel: public QAbstractProxyModel
     {
         Q_OBJECT
         public:
-            RowQuaternionProxyModel(QObject *parent = nullptr) :
+            RowVectorProxyModel(QObject *parent = nullptr) :
                 QAbstractProxyModel(parent)
             {}
 
-            ~RowQuaternionProxyModel() override = default;
+            ~RowVectorProxyModel() override = default;
 
             QModelIndex	index(int row,
                               int column,
@@ -60,4 +72,4 @@ namespace FDQUI
     };
 }
 
-#endif // QUATERNIONMODEL_H
+#endif // VECTORMODEL_H
