@@ -24,7 +24,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 DESTDIR = ../build/lib
 MAKEFILE = ../build/makefiles/$${TARGET}
-OBJECTS_DIR = ../build/.obj/$${TARGET}
+OBJECTS_DIR = ../build/obj/$${TARGET}
 
 LIBS += -L../build/lib
 LIBS += -lFDCore -lFD3D -lFDCore -lFDGL -lglad

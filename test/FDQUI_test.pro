@@ -26,7 +26,7 @@ CONFIG += c++17
 
 DESTDIR = ../../build/bin
 MAKEFILE = ../../build/makefiles/$${TARGET}
-OBJECTS_DIR = ../../build/.obj/$${TARGET}
+OBJECTS_DIR = ../../build/obj/$${TARGET}
 
 LIBS += -L../../build/lib
 LIBS += -L../../thirdparty/assimp/bin
@@ -35,13 +35,6 @@ LIBS += -lglfw -lGL -lpthread -ldl -lX11 -lXrandr -lstdc++
 
 #LIBS += -lglad -lFDGL -lFDCore
 #LIBS += -lglfw -lGL -lpthread -ldl -lX11 -lXrandr -lstdc++
-
-PRE_TARGETDEPS += \
-#    ../../build/lib/libFDQUI.a
-#    ../../build/lib/libFD3D.a
-
-DEPENDPATH += \
-    ../../build/lib/
 
 INCLUDEPATH += \
     ../include \

@@ -548,7 +548,7 @@ QVariant FDQUI::LightModel::data(const QModelIndex &index, int role) const
                     case FD3D::LightType::SpotLight:
                     return tr("Spot Light");
 
-                    case FD3D::LightType::Undefined:
+                    case FD3D::LightType::Invalid:
                     return tr("Undefined Light Type");
                 }
             }
