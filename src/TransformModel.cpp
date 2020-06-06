@@ -350,7 +350,7 @@ QVariant FDQUI::TransformModel::data(const QModelIndex &index, int role) const
             return tr("IsUpToDate");
 
         if(role == Qt::CheckStateRole)
-            return m_transform->isUptoDate() ? Qt::Checked : Qt::Unchecked;
+            return m_transform->isUpToDate() ? Qt::Checked : Qt::Unchecked;
     }
 
     if(index.internalId() == static_cast<quintptr>(InternalId::Matrix))
@@ -532,7 +532,7 @@ bool FDQUI::TransformModel::setData(const QModelIndex &index, const QVariant &va
         if(role == Qt::CheckStateRole)
         {
             bool b = value == Qt::Checked;
-            if(b == m_transform->isUptoDate())
+            if(b == m_transform->isUpToDate())
                 return true;
 
             if(b)

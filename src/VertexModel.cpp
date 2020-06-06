@@ -1,6 +1,6 @@
 #include <FDQUI/Model/VertexModel.h>
 
-#include <FD3D/Mesh/AbstractMesh.h>
+#include <FD3D/Mesh/AbstractMeshComponent.h>
 
 FDQUI::VertexModel::VertexModel(QObject *parent) :
     QAbstractItemModel(parent),
@@ -663,17 +663,17 @@ Qt::ItemFlags FDQUI::VertexModel::flags(const QModelIndex &index) const
                      | Qt::ItemNeverHasChildren;
 }
 
-const FD3D::VertexProxy *FDQUI::VertexModel::getVertex() const
+const FD3D::VertexProxy2 *FDQUI::VertexModel::getVertex() const
 {
     return m_vertex;
 }
 
-FD3D::VertexProxy *FDQUI::VertexModel::getVertex()
+FD3D::VertexProxy2 *FDQUI::VertexModel::getVertex()
 {
     return m_vertex;
 }
 
-void FDQUI::VertexModel::setVertex(FD3D::VertexProxy *vertex)
+void FDQUI::VertexModel::setVertex(FD3D::VertexProxy2 *vertex)
 {
     emit beginResetModel();
     m_vertex = vertex;
@@ -685,7 +685,7 @@ int FDQUI::VertexModel::getFieldRow(FDQUI::VertexModel::InternalId field) const
     if(!m_vertex)
         return -1;
 
-    const FD3D::AbstractMesh *mesh = m_vertex->getMesh();
+    const FD3D::AbstractMeshComponent *mesh = m_vertex->getMesh();
     FD3D::VertexComponentType comp = internalIdToVertexComponent(field);
     if(comp == FD3D::VertexComponentType::Invalid || !mesh->hasVertexComponent(comp))
         return -1;
@@ -726,7 +726,7 @@ FDQUI::VertexModel::InternalId FDQUI::VertexModel::getIdFromRow(int row, FDQUI::
 
         case InternalId::Vertex:
         {
-            const FD3D::AbstractMesh *mesh = m_vertex->getMesh();
+            const FD3D::AbstractMeshComponent *mesh = m_vertex->getMesh();
             switch(row)
             {
                 case 0:

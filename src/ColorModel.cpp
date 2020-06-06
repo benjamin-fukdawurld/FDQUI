@@ -130,14 +130,16 @@ QVariant ColorModel::data(const QModelIndex &index, int role) const
     return QModelIndex();
 }
 
-bool ColorModel::setData(const QModelIndex &index, const QVariant &value, int role)
+bool ColorModel::setData(const QModelIndex &, const QVariant &, int)
 {
-
+    assert(false && "Not Implemented yet");
+    return false;
 }
 
-Qt::ItemFlags ColorModel::flags(const QModelIndex &index) const
+Qt::ItemFlags ColorModel::flags(const QModelIndex &) const
 {
-
+    assert(false && "Not Implemented yet");
+    return Qt::ItemFlags();
 }
 
 void ColorModel::setColor(glm::vec4 *color)

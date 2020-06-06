@@ -140,7 +140,7 @@ void FDQUI::OpenGLWidget::paintGL()
 
 using namespace std;
 
-static FDGL::OpenGLShaderProgramWrapper createShaderProgram()
+/*static FDGL::OpenGLShaderProgramWrapper createShaderProgram()
 {
     FDGL::OpenGLShaderProgramWrapper program;
     FDGL::OpenGLShader v_shad;
@@ -178,7 +178,7 @@ static FDGL::OpenGLShaderProgramWrapper createShaderProgram()
     }
 
     return program;
-}
+}*/
 
 class Renderer
 {
@@ -346,7 +346,7 @@ void Renderer::onInit(FDGL::BaseOpenGLWindow &w)
         }
         else
         {
-            QOpenGLTexture::PixelType type = QOpenGLTexture::NoPixelType;
+            /*QOpenGLTexture::PixelType type = QOpenGLTexture::NoPixelType;
             if(QString(texture->achFormatHint) == "rgba8888"
                || QString(texture->achFormatHint) == "argb8888")
                 type = QOpenGLTexture::UInt32_RGBA8;
@@ -354,9 +354,9 @@ void Renderer::onInit(FDGL::BaseOpenGLWindow &w)
                 type = QOpenGLTexture::UInt16_R5G6B5;
             else
                 qCritical("Unsupported texture format: %s for texture %s",
-                          texture->achFormatHint, texture->mFilename.C_Str());
+                          texture->achFormatHint, texture->mFilename.C_Str());*/
 
-            tex.setData(0, 0, QOpenGLTexture::RGBA, type, reinterpret_cast<void*>(texture->pcData));
+            //tex.setData(0, 0, QOpenGLTexture::RGBA, type, reinterpret_cast<void*>(texture->pcData));
         }
 
         return tex.textureId();

@@ -82,7 +82,7 @@ namespace FDQUI
             };
 
         protected:
-            FD3D::VertexProxy *m_vertex;
+            FD3D::VertexProxy2 *m_vertex;
 
 
         public:
@@ -112,11 +112,11 @@ namespace FDQUI
 
             Qt::ItemFlags flags(const QModelIndex &index) const override;
 
-            const FD3D::VertexProxy *getVertex() const;
+            const FD3D::VertexProxy2 *getVertex() const;
 
-            FD3D::VertexProxy *getVertex();
+            FD3D::VertexProxy2 *getVertex();
 
-            void setVertex(FD3D::VertexProxy *vertex);
+            void setVertex(FD3D::VertexProxy2 *vertex);
 
             void unsetVertex() { setVertex(nullptr);}
 
